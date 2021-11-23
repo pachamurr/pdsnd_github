@@ -248,9 +248,10 @@ def user_stats(df):
     print('-'*40)
 
 
-# Main function allowing running of helper functions and controlling flow of logic.
+
 
 def main():
+    """Main function allowing running of helper functions and controlling flow of logic."""
     while True:
         city, month, day = get_filters()
         df = load_data(city, month, day)
@@ -266,9 +267,10 @@ def main():
         if restart.lower() != 'yes' and restart.lower() != 'y':
             break
 
-# Function to allow user to step through raw rows of filtered data in DataFrame
-# Function purposely designed to allow 'enter' strikes rather than typing as paginating.
+
 def raw_data(df):
+    """ Function to allow user to step through raw rows of filtered data in DataFrame
+    Function purposely designed to allow 'enter' strikes rather than typing as paginating. """
     cont = ""
     start = 0
     end = 5
