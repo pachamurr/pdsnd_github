@@ -55,7 +55,6 @@ def get_city():
         try:
             city = str(input("Input one of the following cities:  New York City, Washington, or Chicago:  "))
             if city.lower() in city_data:
-                print("Completed city capture")
                 return city.lower()
                 break
             else:
@@ -71,11 +70,9 @@ def get_month():
             if month == "":
                 month = "all"
                 return month
-                print("Completed month capture")
                 break
             elif month.lower() in months:
                 return month.lower()
-                print("Completed month capture")
                 break
             else:
                 print("You must enter a month as shown in the prompt and select between January and June")
