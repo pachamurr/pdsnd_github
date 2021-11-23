@@ -5,11 +5,11 @@ from datetime import date,datetime
 
 
 # Dictionaries to help with some of the logic in the rest of the code.
-CITY_DATA = { 'chicago': 'chicago.csv',
+city_data = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
 
-MONTHS = { 'january': ['01-01-2017 00:00:01', '01-31-2017 23:59:59', 0],
+months = { 'january': ['01-01-2017 00:00:01', '01-31-2017 23:59:59', 0],
           'february': ['02-01-2017 00:00:01', '02-28-2017 23:59:59', 1],
           'march': ['03-01-2017 00:00:01', '03-31-2017 23:59:59', 2],
           'april': ['04-01-2017 00:00:01', '04-30-2017 23:59:59', 3],
@@ -18,7 +18,7 @@ MONTHS = { 'january': ['01-01-2017 00:00:01', '01-31-2017 23:59:59', 0],
           'all': ['01-01-2017 00:00:01', '12-31-2017 23:59:59', 12],
 }
 
-DAYS = {'monday' : 0,
+days = {'monday' : 0,
         'tuesday': 1,
         'wednesday': 2,
         'thursday': 3,
@@ -34,16 +34,16 @@ day = ""
 month = ""
 
 
-# helper functions to return day and month based on integer values from MONTHS and DAYS
+# helper functions to return day and month based on integer values from months and days
 def return_day(intDay):
-    for day in DAYS:
-        #print('day is {} and intDay is {} and DAYS[day][0] is {}'.format(day, intDay, DAYS[day]))
-        if intDay == DAYS.get(day):
+    for day in days:
+        #print('day is {} and intDay is {} and days[day][0] is {}'.format(day, intDay, days[day]))
+        if intDay == days.get(day):
             return day.capitalize()
 
 def return_month(intMonth):
-    for month in MONTHS:
-        if intMonth - 1 == MONTHS[month][2]:
+    for month in months:
+        if intMonth - 1 == months[month][2]:
             return month.capitalize()
 
 # Functions to request the City, month, and if the user wants to check days.
@@ -54,8 +54,7 @@ def get_city():
     while True:
         try:
             city = str(input("Input one of the following cities:  New York City, Washington, or Chicago:  "))
-            if city.lower() in CITY_DATA:
-                print("Completed city capture")
+            if city.lower() in city_data:
                 return city.lower()
                 break
             else:
@@ -71,11 +70,9 @@ def get_month():
             if month == "":
                 month = "all"
                 return month
-                print("Completed month capture")
                 break
-            elif month.lower() in MONTHS:
+            elif month.lower() in months:
                 return month.lower()
-                print("Completed month capture")
                 break
             else:
                 print("You must enter a month as shown in the prompt and select between January and June")
@@ -90,11 +87,9 @@ def get_day():
             if day == "":
                 day = "all"
                 return day
-                print("Completed day capture")
                 break
-            elif day.lower() in DAYS:
+            elif day.lower() in days:
                 return day.lower()
-                print("Completed day capture")
                 break
             else:
                 print("you must enter a day as shown in the prompt")
@@ -143,8 +138,8 @@ def load_data(city, month, day):
     print("loading {} file".format(file_name))
     file = pd.read_csv('./' + file_name)
     # create start and end time filters based on user input.
-    start = datetime.strptime(MONTHS[month][0], '%m-%d-%Y %H:%M:%S')
-    finish = datetime.strptime(MONTHS[month][1], '%m-%d-%Y %H:%M:%S')
+    start = datetime.strptime(months[month][0], '%m-%d-%Y %H:%M:%S')
+    finish = datetime.strptime(months[month][1], '%m-%d-%Y %H:%M:%S')
     file['Start Time'] = pd.to_datetime(file['Start Time'], format='%Y-%m-%d %H:%M:%S')
     # create data frame using start and end time filters.
     df = file[(file["Start Time"] >= start) & (file["Start Time"] <= finish)]
@@ -156,8 +151,8 @@ def load_data(city, month, day):
 
     # check for if user has selected a particular day or if they're looking at all.  Filter accordingly and return dataframe.
     if day != "all":
-        print("You've selected a particular day - {}".format(DAYS[day]))
-        return df[df['Weekday'] == DAYS[day]]
+        print("You've selected a particular day - {}".format(days[day]))
+        return df[df['Weekday'] == days[day]]
 
     else:
         print("You've selected all days")
