@@ -46,7 +46,7 @@ def return_month(intMonth):
         if intMonth - 1 == MONTHS[month][2]:
             return month.capitalize()
 
-# Script to request the City, month, and if the user wants to check days.
+# Functions to request the City, month, and if the user wants to check days.
 # Exception handling to prevent obvious errors like wrong choices or capitalization
 # Including logic to allow selection of all by clicking Enter or typing 'All'
 
@@ -125,7 +125,7 @@ def get_filters():
     print('-'*40)
     return city, month, day
 
-# master function to pull information from the user to input into pandas filters.
+# main function to pull information from the user to input into pandas filters.
 
 def load_data(city, month, day):
     """
@@ -267,6 +267,7 @@ def main():
             break
 
 # Function to allow user to step through raw rows of filtered data in DataFrame
+# Function purposely designed to allow 'enter' strikes rather than typing as paginating.
 def raw_data(df):
     cont = ""
     start = 0
