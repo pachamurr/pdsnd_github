@@ -90,11 +90,9 @@ def get_day():
             if day == "":
                 day = "all"
                 return day
-                print("Completed day capture")
                 break
             elif day.lower() in days:
                 return day.lower()
-                print("Completed day capture")
                 break
             else:
                 print("you must enter a day as shown in the prompt")
