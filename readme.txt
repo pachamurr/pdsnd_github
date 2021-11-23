@@ -8,6 +8,7 @@ Files:
 - bikeshare.py
 - requirements.txt
 - readme.txt
+- README.md
 
 Supporting CSV files needed in same directory for run-time - not included in submission:
 - chicago.CSV
