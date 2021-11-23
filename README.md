@@ -23,4 +23,6 @@ Supporting CSV files needed in same directory for run-time - not included in sub
 - washington.CSV
 
 ### Credits
-This project was authored solely by pachamurr.
+This project was authored solely by pachamurr with some help in the initial from the Udacity instructors
+
+```
